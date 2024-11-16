@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Login">
+  </form>
+
+  <button id="logoutButton">Logout</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<script>
+const loginForm = document.getElementById('loginForm');
+const logoutButton = document.getElementById('logoutButton');
+
+loginForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  // Replace with your actual authentication logic
+  if (username === 'test' && password === 'pass') {
+    // Set a cookie to remember the login
+    document.cookie = "isLoggedIn=true; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
+    window.location.href = 'https://your-desired-url.com'; // Replace with your desired URL
+  } else {
+    alert('Invalid username or password');
+  }
+});
+
+logoutButton.addEventListener('click', () => {
+  // Remove the cookie to log out
+  document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  window.location.href = 'https://your-logout-url.com'; // Replace with your logout URL
+});
+
+// Check for existing cookie on page load
+window.onload = function() {
+  if (document.cookie.indexOf("isLoggedIn=true") !== -1) {
+    window.location.href = 'https://your-desired-url.com'; // Redirect if logged in
+  }
+};
+
+
+
+</script>
