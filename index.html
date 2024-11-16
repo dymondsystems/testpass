@@ -43,8 +43,8 @@ loginForm.addEventListener('submit', (event) => {
     // Replace with your actual authentication logic or database lookup
     if (username === 'user1' && password === 'password1') {
         localStorage.setItem('user', 'user1');
-        localStorage.setItem('redirectUrl', '#');
-        window.location.href = '#';
+        localStorage.setItem('redirectUrl', 'https://dymond.systems/testpass');
+        window.location.href = 'https://dymond.systems/testpass';
     } else if (username === 'user2' && password === 'password2') {
         localStorage.setItem('user', 'user2');
         localStorage.setItem('redirectUrl', 'https://user2-redirect.com');
@@ -62,10 +62,11 @@ logoutButton.addEventListener('click', () => {
 window.onload = function() {
     const user = localStorage.getItem('user');
     if (user) {
-        const redirectUrl = localStorage.getItem('redirectUrl');
-        window.location.href = redirectUrl;
         loginForm.style.display = 'none';
         logoutButton.style.display = 'block';
+    } else {
+        loginForm.style.display = 'block';
+        logoutButton.style.display = 'none';
     }
 };
     </script>
